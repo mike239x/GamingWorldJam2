@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed:int = 10
+@export var speed:float = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,3 +17,4 @@ func _process(delta):
 		self.position += Vector2(-speed,0)
 	if Input.is_action_pressed("move_right"):
 		self.position += Vector2(speed,0)
+

@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bscw8abwf51j7"]
+[gd_scene load_steps=6 format=3 uid="uid://bscw8abwf51j7"]
 
+[ext_resource type="Script" path="res://Main.gd" id="1_4mpnj"]
 [ext_resource type="PackedScene" uid="uid://dxqnn6dlq0ij3" path="res://character.tscn" id="1_55dnx"]
+[ext_resource type="PackedScene" uid="uid://cbuqoux7udsup" path="res://hud.tscn" id="1_x6wqk"]
+[ext_resource type="PackedScene" uid="uid://drs0x30iykvhd" path="res://dream_world.tscn" id="2_tvtq8"]
+[ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://real_world.tscn" id="5_ktbnl"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_4mpnj")
+
+[node name="HUD" parent="." instance=ExtResource("1_x6wqk")]
 
 [node name="Character" parent="." instance=ExtResource("1_55dnx")]
-position = Vector2(565, 296)
+position = Vector2(319, 213)
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+
+[node name="DreamWorld" parent="." instance=ExtResource("2_tvtq8")]
+
+[node name="RealWorld" parent="." instance=ExtResource("5_ktbnl")]

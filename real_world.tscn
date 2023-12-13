@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0c4kylb8bb4p"]
+
+[ext_resource type="Texture2D" uid="uid://birg32gqhchu3" path="res://icon.svg" id="1_o3mtt"]
+
+[node name="RealWorld" type="Node2D"]
+
+[node name="CloudPlaceholder" type="Sprite2D" parent="."]
+modulate = Color(0.109804, 0.0980392, 0.443137, 1)
+position = Vector2(310, 381.612)
+rotation = -3.14159
+scale = Vector2(6.23658, 0.350343)
+texture = ExtResource("1_o3mtt")
