@@ -1,6 +1,6 @@
-extends Node2D
+extends CharacterBody2D
 
-@export var speed:float = 10
+@export var max_speed:float = 400
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,12 +9,24 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("move_down"):
-		self.position += Vector2(0,speed)
-	if Input.is_action_pressed("move_up"):
-		self.position += Vector2(0,-speed)
-	if Input.is_action_pressed("move_left"):
-		self.position += Vector2(-speed,0)
-	if Input.is_action_pressed("move_right"):
-		self.position += Vector2(speed,0)
+	pass
 
+func _physics_process(delta):
+	var speed = Vector2.ZERO
+	if Input.is_action_pressed("move_down"):
+		speed += Vector2(0,1)
+	if Input.is_action_pressed("move_up"):
+		speed += Vector2(0,-1)
+	if Input.is_action_pressed("move_left"):
+		speed += Vector2(-1,0)
+	if Input.is_action_pressed("move_right"):
+		speed += Vector2(1,0)
+	velocity = speed.normalized() * max_speed
+	# print(velocity)
+	move_and_slide()
+	if speed == Vector2.ZERO:
+		$AnimationTree.get('parameters/playback').travel('Idle')
+	else:
+		$AnimationTree.get('parameters/playback').travel('Walk')
+		$AnimationTree.set('parameters/Walk/blend_position', speed)
+		$AnimationTree.set('parameters/Idle/blend_position', speed)
