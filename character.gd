@@ -6,7 +6,6 @@ extends CharacterBody2D
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -24,9 +23,15 @@ func _physics_process(delta):
 	velocity = speed.normalized() * max_speed
 	# print(velocity)
 	move_and_slide()
+	
+	var muzzle = (get_global_mouse_position() - global_position).normalized()
+	$AnimationTree.set('parameters/Idle/blend_position', muzzle)
+	$AnimationTree.set('parameters/Idle/blend_position', muzzle)
+
 	if speed == Vector2.ZERO:
 		$AnimationTree.get('parameters/playback').travel('Idle')
 	else:
 		$AnimationTree.get('parameters/playback').travel('Walk')
-		$AnimationTree.set('parameters/Walk/blend_position', speed)
-		$AnimationTree.set('parameters/Idle/blend_position', speed)
+		#$AnimationTree.set('parameters/Walk/blend_position', speed)
+		#$AnimationTree.set('parameters/Idle/blend_position', speed)
+

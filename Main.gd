@@ -8,6 +8,7 @@ func _ready():
 	deactivate($DreamWorld)
 	$DreamWorld.hide()
 	state = WORLD_STATE.REAL
+	$Character/Gun.shoot.connect(_on_gun_shoot)
 
 #TODO maybe introduce the state - dream/reality, day/night, location?
 
@@ -44,3 +45,10 @@ func _process(delta):
 		elif state == WORLD_STATE.DREAM:
 			state = WORLD_STATE.REAL
 			change_scene($DreamWorld, $RealWorld)
+
+func _on_gun_shoot(Bullet, direction, location):
+	var bullet = Bullet.instantiate()
+	add_child(bullet)
+	bullet.rotation = direction
+	bullet.position = location + $Character.position
+	bullet.velocity = bullet.velocity.rotated(direction)
