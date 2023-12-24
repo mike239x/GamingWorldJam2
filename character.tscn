@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b46stxvcjod61" path="res://char.png" id="2_8dqj0"]
 [ext_resource type="PackedScene" uid="uid://dkgclwqjxiswo" path="res://gun.tscn" id="3_8c4uj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fx0ru"]
-size = Vector2(15, 15)
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdxs6"]
 
 [sub_resource type="Animation" id="Animation_q6h0t"]
 length = 0.001
@@ -162,8 +161,8 @@ graph_offset = Vector2(-20, -4)
 script = ExtResource("1_g5uxb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 23)
-shape = SubResource("RectangleShape2D_fx0ru")
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_qdxs6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8dqj0")
