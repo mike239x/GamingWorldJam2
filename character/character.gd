@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
 @export var max_speed:float = 400
+var max_health:float = 100
+var health:float = max_health
+var max_stamina:float = 100
+var stamina:float = max_stamina
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,3 +39,8 @@ func _physics_process(delta):
 		#$AnimationTree.set('parameters/Walk/blend_position', speed)
 		#$AnimationTree.set('parameters/Idle/blend_position', speed)
 
+func take_damage(damage, source = null):
+	health -= damage
+	if health <= 0:
+		health = 0
+	#TODO: some blood splatter effects

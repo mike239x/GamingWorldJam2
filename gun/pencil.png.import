@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do3sfcrorqsh6"
-path="res://.godot/imported/shade_placeholder.png-747019e7d6a0dc00dd2d41a37b4ae097.ctex"
+uid="uid://2yhpovdbmjqp"
+path="res://.godot/imported/pencil.png-225a86a51666b10cc4233f5ab57c705f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shade_placeholder.png"
-dest_files=["res://.godot/imported/shade_placeholder.png-747019e7d6a0dc00dd2d41a37b4ae097.ctex"]
+source_file="res://gun/pencil.png"
+dest_files=["res://.godot/imported/pencil.png-225a86a51666b10cc4233f5ab57c705f.ctex"]
 
 [params]
 

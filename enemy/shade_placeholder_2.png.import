@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2yhpovdbmjqp"
-path="res://.godot/imported/pencil.png-dece04fe0ea79a8dd04bb80fba6650ae.ctex"
+uid="uid://cnx5nix7mp8c6"
+path="res://.godot/imported/shade_placeholder_2.png-318d8a28281120a53408f80e061622b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pencil.png"
-dest_files=["res://.godot/imported/pencil.png-dece04fe0ea79a8dd04bb80fba6650ae.ctex"]
+source_file="res://enemy/shade_placeholder_2.png"
+dest_files=["res://.godot/imported/shade_placeholder_2.png-318d8a28281120a53408f80e061622b4.ctex"]
 
 [params]
 

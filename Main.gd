@@ -52,3 +52,11 @@ func _on_gun_shoot(Bullet, direction, location):
 	bullet.rotation = direction
 	bullet.position = location + $Character.position
 	bullet.velocity = bullet.velocity.rotated(direction)
+	bullet.bullet_timeout.connect(_on_bullet_timeout)
+
+func _on_bullet_timeout(bullet):
+	print(bullet, ' died :C')
+
+#signal bullet_timeout(bullet)
+#signal enemy_hit(bullet, enemy)
+#signal wall_hit(bullet, wall)

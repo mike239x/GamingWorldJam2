@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlrll4s3lbrd3"]
+[gd_scene load_steps=6 format=3 uid="uid://dlrll4s3lbrd3"]
 
-[ext_resource type="Texture2D" uid="uid://cap7yut10u1up" path="res://global_map.png" id="1_l3uin"]
+[ext_resource type="Texture2D" uid="uid://cap7yut10u1up" path="res://level_select/global_map.png" id="1_l3uin"]
 [ext_resource type="FontFile" uid="uid://dmw85i6hi0agy" path="res://slkscr.ttf" id="1_n4ovx"]
-[ext_resource type="Texture2D" uid="uid://opfn88xh7hqd" path="res://9p_border.png" id="3_d7gwq"]
+[ext_resource type="Script" path="res://level_select/level_select.gd" id="1_u8kd4"]
+[ext_resource type="Texture2D" uid="uid://opfn88xh7hqd" path="res://level_select/9p_border.png" id="3_d7gwq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_anatf"]
 font = ExtResource("1_n4ovx")
 
 [node name="LevelSelect" type="CanvasLayer"]
+script = ExtResource("1_u8kd4")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -1.0
@@ -18,6 +20,7 @@ texture = ExtResource("1_l3uin")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="TextureRect"]
 modulate = Color(1, 0.819608, 0.533333, 1)
+layout_mode = 0
 offset_left = 111.0
 offset_top = 295.0
 offset_right = 296.0
@@ -40,6 +43,7 @@ label_settings = SubResource("LabelSettings_anatf")
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="TextureRect"]
 modulate = Color(0.415686, 0.819608, 0.533333, 1)
+layout_mode = 0
 offset_left = 335.0
 offset_top = 206.0
 offset_right = 515.0
@@ -63,8 +67,9 @@ label_settings = SubResource("LabelSettings_anatf")
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="TextureRect"]
 modulate = Color(0.415686, 0.427451, 0.533333, 1)
+layout_mode = 0
 offset_left = 154.0
-offset_top = 86.0
+offset_top = 71.0
 offset_right = 351.0
 offset_bottom = 200.0
 texture = ExtResource("3_d7gwq")

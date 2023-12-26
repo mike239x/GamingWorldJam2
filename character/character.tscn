@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://dxqnn6dlq0ij3"]
 
-[ext_resource type="Script" path="res://character.gd" id="1_g5uxb"]
-[ext_resource type="Texture2D" uid="uid://b46stxvcjod61" path="res://char.png" id="2_8dqj0"]
-[ext_resource type="PackedScene" uid="uid://dkgclwqjxiswo" path="res://gun.tscn" id="3_8c4uj"]
+[ext_resource type="Script" path="res://character/character.gd" id="1_g5uxb"]
+[ext_resource type="Texture2D" uid="uid://b46stxvcjod61" path="res://character/char.png" id="2_6svxi"]
+[ext_resource type="PackedScene" uid="uid://dkgclwqjxiswo" path="res://gun/gun.tscn" id="3_8c4uj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qdxs6"]
 
@@ -165,7 +165,7 @@ position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_qdxs6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8dqj0")
+texture = ExtResource("2_6svxi")
 hframes = 16
 frame = 2
 
