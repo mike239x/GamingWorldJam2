@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsqxxq2g2j8c2"]
+[gd_scene load_steps=10 format=3 uid="uid://bsqxxq2g2j8c2"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_0p2py"]
-[ext_resource type="Texture2D" uid="uid://do3sfcrorqsh6" path="res://enemy/shade_placeholder.png" id="2_vy16g"]
+[ext_resource type="Texture2D" uid="uid://cnx5nix7mp8c6" path="res://enemy/shade_placeholder_2.png" id="2_qx21g"]
+[ext_resource type="PackedScene" uid="uid://e73lohugudus" path="res://tentacle_attacks/stab.tscn" id="3_0w5a8"]
+[ext_resource type="PackedScene" uid="uid://dcwjed8mdov1e" path="res://tentacle_attacks/swipe.tscn" id="4_ddklh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8660g"]
 
@@ -131,9 +133,6 @@ _data = {
 "walk": SubResource("Animation_dg477")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qffgd"]
-radius = 23.0217
-
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_0p2py")
 
@@ -142,18 +141,20 @@ script = ExtResource("1_0p2py")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8660g")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 3)
-texture = ExtResource("2_vy16g")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_udi3j")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(2, 3)
+texture = ExtResource("2_qx21g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_qffgd")
+[node name="Tentacle" parent="Sprite2D" instance=ExtResource("3_0w5a8")]
+z_index = -1
+position = Vector2(-1, -6)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered_close_range"]
+[node name="Tentacle2" parent="Sprite2D" instance=ExtResource("4_ddklh")]
+z_index = -1
+rotation = 3.14159

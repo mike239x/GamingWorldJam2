@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgmfqlncfrpxa"
-path="res://.godot/imported/shade_attack.png-c74e4947cb1702838eb6ec1208aa276e.ctex"
+path="res://.godot/imported/swipe.png-f1caeac057508def25b3e74f58939cce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shade_attack.png"
-dest_files=["res://.godot/imported/shade_attack.png-c74e4947cb1702838eb6ec1208aa276e.ctex"]
+source_file="res://tentacle_attacks/swipe.png"
+dest_files=["res://.godot/imported/swipe.png-f1caeac057508def25b3e74f58939cce.ctex"]
 
 [params]
 

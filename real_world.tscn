@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0c4kylb8bb4p"]
 
 [ext_resource type="Script" path="res://real_world.gd" id="1_ydii3"]
+[ext_resource type="Texture2D" uid="uid://cafequfwwnsm8" path="res://forest_placeholder_test.png" id="2_8hj8l"]
 [ext_resource type="PackedScene" uid="uid://dqvnglmyy0a34" path="res://sleeping_bag/sleeping_bag.tscn" id="2_vqrdy"]
-[ext_resource type="Texture2D" uid="uid://cafequfwwnsm8" path="res://forest_placeholder_test.png" id="2_xllch"]
 
 [node name="RealWorld" type="Node2D"]
 script = ExtResource("1_ydii3")
@@ -10,7 +10,7 @@ script = ExtResource("1_ydii3")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(146, -251)
 scale = Vector2(4, 4)
-texture = ExtResource("2_xllch")
+texture = ExtResource("2_8hj8l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
