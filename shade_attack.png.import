@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b41s5nlv5c86t"
-path="res://.godot/imported/main_character_portrait.png-deaa40d6bd039583bcf560123c27fefd.ctex"
+uid="uid://dgmfqlncfrpxa"
+path="res://.godot/imported/shade_attack.png-c74e4947cb1702838eb6ec1208aa276e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/main_character_portrait.png"
-dest_files=["res://.godot/imported/main_character_portrait.png-deaa40d6bd039583bcf560123c27fefd.ctex"]
+source_file="res://shade_attack.png"
+dest_files=["res://.godot/imported/shade_attack.png-c74e4947cb1702838eb6ec1208aa276e.ctex"]
 
 [params]
 

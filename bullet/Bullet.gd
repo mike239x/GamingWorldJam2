@@ -1,8 +1,8 @@
 extends Area2D
 
-@export var speed = 300
+@export var speed = 500
 @export var expiration_time = 1
-@export var damage = 5
+@export var damage = 0
 var velocity = Vector2.RIGHT
 
 signal bullet_timeout(bullet)

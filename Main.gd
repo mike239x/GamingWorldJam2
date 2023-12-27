@@ -3,12 +3,13 @@ extends Node2D
 enum WORLD_STATE {REAL, DREAM}
 var state = WORLD_STATE.REAL
 
+signal sleep()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	deactivate($DreamWorld)
 	$DreamWorld.hide()
 	state = WORLD_STATE.REAL
-	$Character/Gun.shoot.connect(_on_gun_shoot)
 
 #TODO maybe introduce the state - dream/reality, day/night, location?
 
@@ -39,10 +40,7 @@ func change_scene(from, to):
 
 func _process(delta):
 	if Input.is_action_just_released("tilda"):
-		if state == WORLD_STATE.REAL:
-			state = WORLD_STATE.DREAM
-			change_scene($RealWorld, $DreamWorld)
-		elif state == WORLD_STATE.DREAM:
+		if  state == WORLD_STATE.DREAM:
 			state = WORLD_STATE.REAL
 			change_scene($DreamWorld, $RealWorld)
 
@@ -50,13 +48,21 @@ func _on_gun_shoot(Bullet, direction, location):
 	var bullet = Bullet.instantiate()
 	add_child(bullet)
 	bullet.rotation = direction
-	bullet.position = location + $Character.position
+	bullet.position = location
 	bullet.velocity = bullet.velocity.rotated(direction)
 	bullet.bullet_timeout.connect(_on_bullet_timeout)
 
 func _on_bullet_timeout(bullet):
-	print(bullet, ' died :C')
+	pass
 
 #signal bullet_timeout(bullet)
 #signal enemy_hit(bullet, enemy)
 #signal wall_hit(bullet, wall)
+
+
+func _on_real_world_sleep():
+	print('nighty night')
+	if state == WORLD_STATE.REAL:
+		state = WORLD_STATE.DREAM
+		change_scene($RealWorld, $DreamWorld)
+

@@ -1,35 +1,53 @@
-[gd_scene load_steps=9 format=3 uid="uid://bscw8abwf51j7"]
+[gd_scene load_steps=11 format=3 uid="uid://bscw8abwf51j7"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_4mpnj"]
+[ext_resource type="Shader" path="res://Dreamy.gdshader" id="1_8bwco"]
 [ext_resource type="PackedScene" uid="uid://dxqnn6dlq0ij3" path="res://character/character.tscn" id="1_55dnx"]
 [ext_resource type="PackedScene" uid="uid://cbuqoux7udsup" path="res://hud/hud.tscn" id="1_x6wqk"]
 [ext_resource type="PackedScene" uid="uid://bpqu20ykmrprw" path="res://scene_transition.tscn" id="2_8gm5j"]
 [ext_resource type="PackedScene" uid="uid://drs0x30iykvhd" path="res://dream_world.tscn" id="2_tvtq8"]
 [ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://real_world.tscn" id="5_ktbnl"]
-[ext_resource type="Texture2D" uid="uid://b3tvxjq1cvny8" path="res://character/mc_front.png" id="7_261rn"]
 [ext_resource type="PackedScene" uid="uid://bsqxxq2g2j8c2" path="res://enemy/enemy.tscn" id="8_xly1i"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7pv3"]
+shader = ExtResource("1_8bwco")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvaf3"]
+shader = ExtResource("1_8bwco")
+
 [node name="Main" type="Node2D"]
+material = SubResource("ShaderMaterial_i7pv3")
 script = ExtResource("1_4mpnj")
-
-[node name="SceneTransition" parent="." instance=ExtResource("2_8gm5j")]
-
-[node name="HUD" parent="." node_paths=PackedStringArray("MC") instance=ExtResource("1_x6wqk")]
-MC = NodePath("../Character")
-
-[node name="Character" parent="." instance=ExtResource("1_55dnx")]
-position = Vector2(312, 208)
-max_speed = 200.0
-
-[node name="Camera2D" type="Camera2D" parent="Character"]
 
 [node name="DreamWorld" parent="." instance=ExtResource("2_tvtq8")]
 
 [node name="RealWorld" parent="." instance=ExtResource("5_ktbnl")]
 
-[node name="McFront" type="Sprite2D" parent="."]
-position = Vector2(83, 320)
-texture = ExtResource("7_261rn")
-
-[node name="Enemy" parent="." instance=ExtResource("8_xly1i")]
+[node name="Enemy" parent="RealWorld" instance=ExtResource("8_xly1i")]
 position = Vector2(142, 89)
+
+[node name="Character" parent="." instance=ExtResource("1_55dnx")]
+position = Vector2(157, -21)
+max_speed = 200.0
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+
+[node name="HollowPurple" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="HollowPurple"]
+material = SubResource("ShaderMaterial_xvaf3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" parent="." node_paths=PackedStringArray("MC") instance=ExtResource("1_x6wqk")]
+MC = NodePath("../Character")
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_8gm5j")]
+
+[connection signal="sleep" from="RealWorld" to="." method="_on_real_world_sleep"]
+[connection signal="shoot" from="Character" to="." method="_on_gun_shoot"]

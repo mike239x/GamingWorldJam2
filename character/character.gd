@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# signal forwarding the gun shots from the gun node
+signal shoot(Bullet, direction, location)
+
 @export var max_speed:float = 400
 var max_health:float = 100
 var health:float = max_health
@@ -29,8 +32,9 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	var muzzle = (get_global_mouse_position() - global_position).normalized()
+
 	$AnimationTree.set('parameters/Idle/blend_position', muzzle)
-	$AnimationTree.set('parameters/Idle/blend_position', muzzle)
+	$AnimationTree.set('parameters/Walk/blend_position', muzzle)
 
 	if speed == Vector2.ZERO:
 		$AnimationTree.get('parameters/playback').travel('Idle')
@@ -44,3 +48,6 @@ func take_damage(damage, source = null):
 	if health <= 0:
 		health = 0
 	#TODO: some blood splatter effects
+
+func _on_gun_shoot(Bullet, direction, location):
+	shoot.emit(Bullet, direction, location)

@@ -2,7 +2,7 @@ extends Node2D
 
 signal shoot(Bullet, direction, location)
 
-@export var Bullet: PackedScene = preload("res://bullet.tscn")
+@export var Bullet: PackedScene = preload("res://bullet/bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,4 +15,4 @@ func _process(delta):
 
 func _input(event):
 	if Input.is_action_just_pressed("LMB"):
-		shoot.emit(Bullet, rotation, position)
+		shoot.emit(Bullet, $Muzzle.get_global_rotation(), $Muzzle.get_global_position())
