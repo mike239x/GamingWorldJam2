@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcwjed8mdov1e"]
+[gd_scene load_steps=8 format=3 uid="uid://dcwjed8mdov1e"]
 
+[ext_resource type="Script" path="res://tentacle_attacks/swipe.gd" id="1_nj5ib"]
 [ext_resource type="Texture2D" uid="uid://dgmfqlncfrpxa" path="res://tentacle_attacks/swipe.png" id="1_qmxut"]
 
 [sub_resource type="Animation" id="Animation_tcb7o"]
@@ -168,6 +169,7 @@ radius = 51.0392
 size = Vector2(31.9449, 5)
 
 [node name="Tentacle" type="Node2D"]
+script = ExtResource("1_nj5ib")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_qmxut")
@@ -182,15 +184,21 @@ autoplay = "attack"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_4mjgf")
 
 [node name="DamageArea" type="Area2D" parent="."]
 rotation = -0.785397
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(31.8198, -10.6066)
 rotation = 0.523598
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_a5d1y")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

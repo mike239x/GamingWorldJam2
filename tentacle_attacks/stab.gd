@@ -1,11 +1,10 @@
 extends Node2D
 
+signal target_in_range(target)
+var damage = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _on_damage_area_body_entered(body):
+	body.take_damage(damage, Vector2(300,0).rotated(get_global_rotation()))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_detection_area_body_entered(body):
+	target_in_range.emit(body)

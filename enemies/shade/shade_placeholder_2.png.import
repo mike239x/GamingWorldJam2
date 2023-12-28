@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do3sfcrorqsh6"
-path="res://.godot/imported/shade_placeholder.png-28e9ea57f1b6189ee8d2a5bce3e72a16.ctex"
+uid="uid://cnx5nix7mp8c6"
+path="res://.godot/imported/shade_placeholder_2.png-680e28a340c0fc10d10f6f5d371dc390.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/shade_placeholder.png"
-dest_files=["res://.godot/imported/shade_placeholder.png-28e9ea57f1b6189ee8d2a5bce3e72a16.ctex"]
+source_file="res://enemies/shade/shade_placeholder_2.png"
+dest_files=["res://.godot/imported/shade_placeholder_2.png-680e28a340c0fc10d10f6f5d371dc390.ctex"]
 
 [params]
 

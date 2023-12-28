@@ -16,9 +16,9 @@ func _physics_process(delta):
 	position += velocity * speed * delta
 
 func _on_body_entered(body):
-	if body.name == "Enemy":
+	if body.name == "Hitbox":
 		enemy_hit.emit(self, body)
-		body.take_damage(damage, self)
+		body.take_damage(damage, velocity * speed)
 		queue_free()
 	#TODO check for walls / whatnot
 

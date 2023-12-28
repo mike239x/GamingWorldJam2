@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsqxxq2g2j8c2"]
+[gd_scene load_steps=12 format=3 uid="uid://bsqxxq2g2j8c2"]
 
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_0p2py"]
-[ext_resource type="Texture2D" uid="uid://cnx5nix7mp8c6" path="res://enemy/shade_placeholder_2.png" id="2_qx21g"]
+[ext_resource type="Script" path="res://enemies/shade/enemy.gd" id="1_0p2py"]
+[ext_resource type="Texture2D" uid="uid://do3sfcrorqsh6" path="res://enemies/shade/shade_placeholder.png" id="2_1p8wo"]
 [ext_resource type="PackedScene" uid="uid://e73lohugudus" path="res://tentacle_attacks/stab.tscn" id="3_0w5a8"]
 [ext_resource type="PackedScene" uid="uid://dcwjed8mdov1e" path="res://tentacle_attacks/swipe.tscn" id="4_ddklh"]
+[ext_resource type="Script" path="res://Hitbox.gd" id="5_lhdpc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8660g"]
 
@@ -133,12 +134,17 @@ _data = {
 "walk": SubResource("Animation_dg477")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7o2t"]
+radius = 9.0
+height = 26.0
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_0p2py")
 
 [node name="Blood" type="Node2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 32)
 shape = SubResource("CircleShape2D_8660g")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -149,7 +155,7 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(2, 3)
-texture = ExtResource("2_qx21g")
+texture = ExtResource("2_1p8wo")
 
 [node name="Tentacle" parent="Sprite2D" instance=ExtResource("3_0w5a8")]
 z_index = -1
@@ -158,3 +164,16 @@ position = Vector2(-1, -6)
 [node name="Tentacle2" parent="Sprite2D" instance=ExtResource("4_ddklh")]
 z_index = -1
 rotation = 3.14159
+
+[node name="Hitbox" type="CharacterBody2D" parent="Sprite2D"]
+position = Vector2(-2, -3)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_lhdpc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hitbox"]
+position = Vector2(1, -4)
+shape = SubResource("CapsuleShape2D_s7o2t")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[connection signal="death" from="Sprite2D/Hitbox" to="." method="_on_hitbox_death"]

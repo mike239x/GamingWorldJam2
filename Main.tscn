@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bscw8abwf51j7"]
+[gd_scene load_steps=12 format=3 uid="uid://bscw8abwf51j7"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_4mpnj"]
 [ext_resource type="Shader" path="res://Dreamy.gdshader" id="1_8bwco"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bpqu20ykmrprw" path="res://scene_transition.tscn" id="2_8gm5j"]
 [ext_resource type="PackedScene" uid="uid://drs0x30iykvhd" path="res://dream_world.tscn" id="2_tvtq8"]
 [ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://real_world.tscn" id="5_ktbnl"]
-[ext_resource type="PackedScene" uid="uid://bsqxxq2g2j8c2" path="res://enemy/enemy.tscn" id="8_xly1i"]
+[ext_resource type="PackedScene" uid="uid://dwr5mfv0pw2jk" path="res://enemies/elk/elk.tscn" id="6_t7n0r"]
+[ext_resource type="PackedScene" uid="uid://bsqxxq2g2j8c2" path="res://enemies/shade/enemy.tscn" id="8_xly1i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7pv3"]
 shader = ExtResource("1_8bwco")
@@ -25,6 +26,9 @@ script = ExtResource("1_4mpnj")
 
 [node name="Enemy" parent="RealWorld" instance=ExtResource("8_xly1i")]
 position = Vector2(142, 89)
+
+[node name="Elk" parent="RealWorld" instance=ExtResource("6_t7n0r")]
+position = Vector2(372, -21)
 
 [node name="Character" parent="." instance=ExtResource("1_55dnx")]
 position = Vector2(157, -21)

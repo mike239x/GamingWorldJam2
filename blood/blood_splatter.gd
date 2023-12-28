@@ -13,9 +13,14 @@ func _ready():
 	emitting = false
 	one_shot = true
 
-func start():
+func fire(impact_vector):
+	if impact_vector == null:
+		impact_vector = Vector2.ZERO
+	speed = impact_vector.length()
+	rotation = impact_vector.angle()
 	emitting = true
 	$Timer.start(1)
+	return self
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

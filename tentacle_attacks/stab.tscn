@@ -3,11 +3,9 @@
 [ext_resource type="Script" path="res://tentacle_attacks/stab.gd" id="1_6ylh6"]
 [ext_resource type="Texture2D" uid="uid://dvhlte1j5i2dm" path="res://tentacle_attacks/stab.png" id="1_dujbi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqnkp"]
-size = Vector2(103, 4)
-
-[sub_resource type="Animation" id="Animation_tcb7o"]
-length = 0.6
+[sub_resource type="Animation" id="Animation_p2x18"]
+resource_name = "RESET"
+length = 0.01
 loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
@@ -47,9 +45,8 @@ tracks/2/keys = {
 "values": [Vector2(11, 0), Vector2(9, 0), Vector2(55.75, -0.875), Vector2(53.625, -0.4375), Vector2(6.54167, -0.145833), Vector2(7, -4.47035e-08)]
 }
 
-[sub_resource type="Animation" id="Animation_p2x18"]
-resource_name = "RESET"
-length = 0.01
+[sub_resource type="Animation" id="Animation_tcb7o"]
+length = 0.6
 loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
@@ -95,18 +92,14 @@ _data = {
 "attack": SubResource("Animation_tcb7o")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqnkp"]
+size = Vector2(103, 4)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1yrm"]
 size = Vector2(22, 16)
 
 [node name="Tentacle" type="Node2D"]
 script = ExtResource("1_6ylh6")
-
-[node name="DetectionArea" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(51.5, 0)
-shape = SubResource("RectangleShape2D_wqnkp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(57, -2)
@@ -120,8 +113,22 @@ libraries = {
 }
 autoplay = "attack"
 
+[node name="DetectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(51.5, 0)
+shape = SubResource("RectangleShape2D_wqnkp")
+
 [node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(11, 0)
 shape = SubResource("RectangleShape2D_w1yrm")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

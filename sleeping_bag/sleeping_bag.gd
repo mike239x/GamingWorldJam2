@@ -11,9 +11,7 @@ func _process(delta):
 			sleep.emit()
 
 func _on_area_2d_body_entered(body):
-	if body.name == 'Character':
-		$Hint.visible = true
+	$Hint.visible = true
 
 func _on_area_2d_body_exited(body):
-	if body.name == 'Character':
-		$Hint.visible = false
+	$Hint.visible = false

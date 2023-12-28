@@ -1,11 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxqnn6dlq0ij3"]
+[gd_scene load_steps=32 format=3 uid="uid://dxqnn6dlq0ij3"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_g5uxb"]
 [ext_resource type="Texture2D" uid="uid://b3tvxjq1cvny8" path="res://character/mc_front.png" id="2_tv2dl"]
 [ext_resource type="PackedScene" uid="uid://dkgclwqjxiswo" path="res://gun/gun.tscn" id="3_8c4uj"]
 [ext_resource type="Texture2D" uid="uid://1gwmglp34qje" path="res://character/mc_back.png" id="3_hcsfk"]
+[ext_resource type="Texture2D" uid="uid://cajlahuexsaa7" path="res://shadow.png" id="4_1f0gk"]
+[ext_resource type="Script" path="res://Hitbox.gd" id="4_1hsij"]
 [ext_resource type="Texture2D" uid="uid://bqy0knmvqf5bh" path="res://character/mc_left.png" id="4_ayxx3"]
 [ext_resource type="Texture2D" uid="uid://bm0qjyfokrn2l" path="res://character/mc_right.png" id="5_hb7vu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_or6hb"]
 
 [sub_resource type="Animation" id="Animation_q6h0t"]
 length = 0.001
@@ -661,13 +665,25 @@ graph_offset = Vector2(-20, -4)
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_g5uxb")
 
+[node name="Blood" type="Node2D" parent="."]
+
 [node name="Pivot" type="Node2D" parent="."]
+z_index = 1
 
 [node name="Gun" parent="Pivot" instance=ExtResource("3_8c4uj")]
 position = Vector2(-10, 6)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 texture = ExtResource("2_tv2dl")
+
+[node name="Hitbox" type="CharacterBody2D" parent="Pivot/Sprite2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_1hsij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Sprite2D/Hitbox"]
+shape = SubResource("CircleShape2D_or6hb")
+debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")
@@ -686,8 +702,11 @@ parameters/Idle/blend_position = Vector2(0.00195313, 0.915344)
 parameters/Walk/blend_position = Vector2(-0.894531, 0.333333)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 28)
 shape = SubResource("CircleShape2D_qdxs6")
-metadata/_edit_lock_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-1, 0)
+texture = ExtResource("4_1f0gk")
 
 [connection signal="shoot" from="Pivot/Gun" to="." method="_on_gun_shoot"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnx5nix7mp8c6"
-path="res://.godot/imported/shade_placeholder_2.png-318d8a28281120a53408f80e061622b4.ctex"
+uid="uid://bejyvjvsh31hp"
+path="res://.godot/imported/tentaelk.png-849c56804802af8f3c5edb87223a9be9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/shade_placeholder_2.png"
-dest_files=["res://.godot/imported/shade_placeholder_2.png-318d8a28281120a53408f80e061622b4.ctex"]
+source_file="res://enemies/elk/tentaelk.png"
+dest_files=["res://.godot/imported/tentaelk.png-849c56804802af8f3c5edb87223a9be9.ctex"]
 
 [params]
 

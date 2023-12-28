@@ -4,18 +4,28 @@ extends CharacterBody2D
 signal shoot(Bullet, direction, location)
 
 @export var max_speed:float = 400
-var max_health:float = 100
-var health:float = max_health
+
+@onready var hitbox = $Pivot/Sprite2D/Hitbox
+
+var max_health:float:
+	set(value):
+		hitbox.max_health = value
+	get:
+		return hitbox.max_health
+var health:float:
+	set(value):
+		hitbox.health = value
+	get:
+		return hitbox.health
 var max_stamina:float = 100
 var stamina:float = max_stamina
+var max_sanity:float = 100
+var sanity:float = max_stamina
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	hitbox.start_with(100)
 
 func _physics_process(delta):
 	var speed = Vector2.ZERO
@@ -42,12 +52,6 @@ func _physics_process(delta):
 		$AnimationTree.get('parameters/playback').travel('Walk')
 		#$AnimationTree.set('parameters/Walk/blend_position', speed)
 		#$AnimationTree.set('parameters/Idle/blend_position', speed)
-
-func take_damage(damage, source = null):
-	health -= damage
-	if health <= 0:
-		health = 0
-	#TODO: some blood splatter effects
 
 func _on_gun_shoot(Bullet, direction, location):
 	shoot.emit(Bullet, direction, location)
