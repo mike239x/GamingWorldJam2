@@ -18,7 +18,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if body.name == "Hitbox":
 		enemy_hit.emit(self, body)
-		body.take_damage(damage, velocity * speed)
+		body.take_damage(damage, velocity * speed, global_position)
 		queue_free()
 	#TODO check for walls / whatnot
 

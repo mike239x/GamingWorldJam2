@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbuqoux7udsup" path="res://hud/hud.tscn" id="1_x6wqk"]
 [ext_resource type="PackedScene" uid="uid://bpqu20ykmrprw" path="res://scene_transition.tscn" id="2_8gm5j"]
 [ext_resource type="PackedScene" uid="uid://drs0x30iykvhd" path="res://dream_world.tscn" id="2_tvtq8"]
-[ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://real_world.tscn" id="5_ktbnl"]
+[ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://forest/forest.tscn" id="5_ktbnl"]
 [ext_resource type="PackedScene" uid="uid://dwr5mfv0pw2jk" path="res://enemies/elk/elk.tscn" id="6_t7n0r"]
 [ext_resource type="PackedScene" uid="uid://bsqxxq2g2j8c2" path="res://enemies/shade/enemy.tscn" id="8_xly1i"]
 

@@ -19,7 +19,7 @@ func _on_body_entered_close_range(body):
 		body.take_damage(15)
 
 func _on_hitbox_death():
-	$AnimationPlayer.current_animation = 'death'
+	$AnimationPlayer.play('death')
 	$AnimationPlayer.animation_finished.connect(_on_death)
 	death.emit(self)
 

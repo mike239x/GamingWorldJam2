@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cafequfwwnsm8"
-path="res://.godot/imported/forest_placeholder_test.png-4a7995d98b7d4a3811922597ac8c9fb8.ctex"
+uid="uid://b2nwwrv2xo5bj"
+path="res://.godot/imported/elk_jump.png-2964a0545c3e2da25e83ce530351ee56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://forest_placeholder_test.png"
-dest_files=["res://.godot/imported/forest_placeholder_test.png-4a7995d98b7d4a3811922597ac8c9fb8.ctex"]
+source_file="res://enemies/elk/elk_jump.png"
+dest_files=["res://.godot/imported/elk_jump.png-2964a0545c3e2da25e83ce530351ee56.ctex"]
 
 [params]
 
