@@ -29,9 +29,9 @@ color = Color(0.227451, 0.227451, 0.227451, 1)
 
 [node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 0
-offset_left = 210.0
+offset_left = 224.0
 offset_top = 14.0
-offset_right = 614.0
+offset_right = 628.0
 offset_bottom = 119.0
 text = "imma firing ma laser
 shoooop...
@@ -39,6 +39,6 @@ da whoooop!!!1!"
 label_settings = SubResource("LabelSettings_seaxv")
 
 [node name="LeftSpeaker" type="Sprite2D" parent="."]
-position = Vector2(74, 293)
+position = Vector2(89, 293)
 scale = Vector2(0.0985091, 0.0985091)
 texture = ExtResource("1_fp1dx")

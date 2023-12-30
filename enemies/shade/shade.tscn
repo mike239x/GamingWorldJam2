@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://bsqxxq2g2j8c2"]
 
-[ext_resource type="Script" path="res://enemies/shade/enemy.gd" id="1_0p2py"]
-[ext_resource type="Texture2D" uid="uid://do3sfcrorqsh6" path="res://enemies/shade/shade_placeholder.png" id="2_1p8wo"]
-[ext_resource type="PackedScene" uid="uid://e73lohugudus" path="res://tentacle_attacks/stab.tscn" id="3_0w5a8"]
-[ext_resource type="PackedScene" uid="uid://dcwjed8mdov1e" path="res://tentacle_attacks/swipe.tscn" id="4_ddklh"]
-[ext_resource type="Script" path="res://Hitbox.gd" id="5_lhdpc"]
+[ext_resource type="Script" path="res://enemies/shade/shade.gd" id="1_skdvo"]
+[ext_resource type="Texture2D" uid="uid://do3sfcrorqsh6" path="res://enemies/shade/shade_placeholder.png" id="2_j5ygx"]
+[ext_resource type="PackedScene" uid="uid://e73lohugudus" path="res://tentacle_attacks/stab.tscn" id="3_tm8br"]
+[ext_resource type="PackedScene" uid="uid://dcwjed8mdov1e" path="res://tentacle_attacks/swipe.tscn" id="4_6m3b3"]
+[ext_resource type="Script" path="res://Hitbox.gd" id="5_uqqyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8660g"]
 
@@ -139,7 +139,7 @@ radius = 9.0
 height = 26.0
 
 [node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_0p2py")
+script = ExtResource("1_skdvo")
 
 [node name="Blood" type="Node2D" parent="."]
 
@@ -155,13 +155,13 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(2, 3)
-texture = ExtResource("2_1p8wo")
+texture = ExtResource("2_j5ygx")
 
-[node name="Tentacle" parent="Sprite2D" instance=ExtResource("3_0w5a8")]
+[node name="Tentacle" parent="Sprite2D" instance=ExtResource("3_tm8br")]
 z_index = -1
 position = Vector2(-1, -7)
 
-[node name="Tentacle2" parent="Sprite2D" instance=ExtResource("4_ddklh")]
+[node name="Tentacle2" parent="Sprite2D" instance=ExtResource("4_6m3b3")]
 z_index = -1
 position = Vector2(-1, -7)
 rotation = 3.14159
@@ -170,7 +170,7 @@ rotation = 3.14159
 position = Vector2(-2, -3)
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("5_lhdpc")
+script = ExtResource("5_uqqyd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hitbox"]
 position = Vector2(1, -4)

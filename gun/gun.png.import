@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cafequfwwnsm8"
-path="res://.godot/imported/forest_placeholder_test.png-a690bf6253c1a43b80435091dc232ecc.ctex"
+uid="uid://bdd0btldkygnx"
+path="res://.godot/imported/gun.png-3769c9c5bfe72b8840191c7858c3a69d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://forest/forest_placeholder_test.png"
-dest_files=["res://.godot/imported/forest_placeholder_test.png-a690bf6253c1a43b80435091dc232ecc.ctex"]
+source_file="res://gun/gun.png"
+dest_files=["res://.godot/imported/gun.png-3769c9c5bfe72b8840191c7858c3a69d.ctex"]
 
 [params]
 
