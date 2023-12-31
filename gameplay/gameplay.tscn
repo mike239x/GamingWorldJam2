@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfb1dqrlne3b8"]
+
+[ext_resource type="Shader" path="res://dreamy.gdshader" id="1_utxcm"]
+[ext_resource type="Script" path="res://gameplay/gameplay.gd" id="2_ixukn"]
+[ext_resource type="PackedScene" uid="uid://cyie5iuro27qf" path="res://forest/dream_forest.tscn" id="3_0koaf"]
+[ext_resource type="PackedScene" uid="uid://cu1tiqvu2wyla" path="res://pop_ups/game_over_screen/game_over_screen.tscn" id="3_l7boa"]
+[ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://forest/forest.tscn" id="4_es8su"]
+[ext_resource type="PackedScene" uid="uid://cwjau12q3veth" path="res://pop_ups/victory_screen/victory_screen.tscn" id="4_ijpl1"]
+[ext_resource type="PackedScene" uid="uid://k4i7k0psm5f5" path="res://pop_ups/dialog/dialog.tscn" id="5_0t0ej"]
+[ext_resource type="PackedScene" uid="uid://dxqnn6dlq0ij3" path="res://character/character.tscn" id="5_g83t6"]
+[ext_resource type="PackedScene" uid="uid://bpqu20ykmrprw" path="res://scene_transition.tscn" id="7_h1pcd"]
+[ext_resource type="PackedScene" uid="uid://cbuqoux7udsup" path="res://gameplay/hud/hud.tscn" id="9_sw1hr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7pv3"]
+shader = ExtResource("1_utxcm")
+shader_parameter/gray = 0.5
+shader_parameter/brightness = 0.5
+shader_parameter/attract_color = null
+shader_parameter/attract_force = 0.5
+shader_parameter/noise_strength = 0.1
+
+[node name="Gameplay" type="Node2D"]
+material = SubResource("ShaderMaterial_i7pv3")
+script = ExtResource("2_ixukn")
+DeathScreen = ExtResource("3_l7boa")
+VictoryScreen = ExtResource("4_ijpl1")
+Dialog = ExtResource("5_0t0ej")
+
+[node name="DreamForest" parent="." node_paths=PackedStringArray("mc") instance=ExtResource("3_0koaf")]
+visible = false
+mc = NodePath("../Character")
+metadata/_edit_lock_ = true
+
+[node name="Forest" parent="." instance=ExtResource("4_es8su")]
+
+[node name="Character" parent="." instance=ExtResource("5_g83t6")]
+position = Vector2(160, -379)
+max_speed = 200.0
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+
+[node name="HUD" parent="." node_paths=PackedStringArray("MC", "time_source") instance=ExtResource("9_sw1hr")]
+MC = NodePath("../Character")
+time_source = NodePath("../Forest")
+
+[node name="SceneTransition" parent="." instance=ExtResource("7_h1pcd")]
+
+[connection signal="cleared" from="DreamForest" to="." method="_on_dream_forest_cleared"]
+[connection signal="sleep" from="Forest" to="." method="_on_real_world_sleep"]
+[connection signal="death" from="Character" to="." method="_on_character_death"]
+[connection signal="shoot" from="Character" to="." method="_on_gun_shoot"]

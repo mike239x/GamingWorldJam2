@@ -5,6 +5,10 @@ Topic: DREAMS
 
 devs: mike239x (coding) and CalicoTCCG (art)
 
+https://github.com/mike239x
+
+https://bsky.app/profile/anathanangelbite.bsky.social
+
 Game title: Mr. Nightshade
 
 External assets:

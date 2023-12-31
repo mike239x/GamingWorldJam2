@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwjau12q3veth"]
+
+[ext_resource type="Texture2D" uid="uid://clx17sbtw7rqg" path="res://pop_ups/victory_screen/victory_screen.png" id="1_2qqkt"]
+[ext_resource type="Script" path="res://pop_ups/generic_popup.gd" id="1_foelc"]
+[ext_resource type="PackedScene" uid="uid://cd5cxow3nbl6p" path="res://pop_ups/next.tscn" id="3_bf88a"]
+
+[node name="VictoryScreen" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_foelc")
+return_msg = "win"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2qqkt")
+expand_mode = 2
+
+[node name="Next" parent="." instance=ExtResource("3_bf88a")]

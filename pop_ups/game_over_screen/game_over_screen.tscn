@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu1tiqvu2wyla"]
+
+[ext_resource type="Script" path="res://pop_ups/generic_popup.gd" id="1_1jlvu"]
+[ext_resource type="Texture2D" uid="uid://b0ypcmrhfm626" path="res://pop_ups/game_over_screen/death_screen.png" id="1_vw13a"]
+[ext_resource type="FontFile" uid="uid://dmw85i6hi0agy" path="res://slkscr.ttf" id="2_u8rqm"]
+[ext_resource type="PackedScene" uid="uid://cd5cxow3nbl6p" path="res://pop_ups/next.tscn" id="4_rsok0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1oqs"]
+line_spacing = 4.0
+font = ExtResource("2_u8rqm")
+font_size = 32
+
+[node name="GameOverScreen" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_1jlvu")
+return_msg = "lose"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vw13a")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 185.0
+offset_top = 294.0
+offset_right = 467.0
+offset_bottom = 367.0
+text = " Succumbed
+to nightmare"
+label_settings = SubResource("LabelSettings_r1oqs")
+
+[node name="Next" parent="." instance=ExtResource("4_rsok0")]

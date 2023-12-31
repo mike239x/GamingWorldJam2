@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba7jma0pdevf6"]
+
+[ext_resource type="Script" path="res://pop_ups/generic_popup.gd" id="1_50wel"]
+[ext_resource type="LabelSettings" uid="uid://bxqa5d08t78uw" path="res://pop_ups/label_settings.tres" id="1_q8da1"]
+[ext_resource type="Texture2D" uid="uid://b5x6ihutelo7t" path="res://pop_ups/credits/cali_cttcg.png" id="2_nndvi"]
+[ext_resource type="Texture2D" uid="uid://db3ipwiquccju" path="res://pop_ups/credits/mike239x.png" id="3_ia0i7"]
+[ext_resource type="PackedScene" uid="uid://cd5cxow3nbl6p" path="res://pop_ups/next.tscn" id="4_1c5jt"]
+
+[node name="Page1" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_50wel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = 46.0
+offset_right = 620.0
+offset_bottom = 118.0
+color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 19.0
+offset_right = 523.0
+offset_bottom = 52.0
+text = "Thank you for playing"
+label_settings = ExtResource("1_q8da1")
+
+[node name="Cali2" type="ColorRect" parent="."]
+offset_left = -18.0
+offset_top = 148.0
+offset_right = 655.0
+offset_bottom = 245.0
+color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cali2"]
+position = Vector2(154, 50)
+scale = Vector2(0.161667, 0.161667)
+texture = ExtResource("2_nndvi")
+
+[node name="Label" type="Label" parent="Cali2"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 15.0
+offset_right = 597.0
+offset_bottom = 84.0
+text = "Art by 
+   CalicoTCCG"
+label_settings = ExtResource("1_q8da1")
+
+[node name="Mike2" type="ColorRect" parent="."]
+offset_left = -18.0
+offset_top = 269.0
+offset_right = 669.0
+offset_bottom = 363.0
+color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Mike2"]
+position = Vector2(154, 47)
+scale = Vector2(0.23, 0.23)
+texture = ExtResource("3_ia0i7")
+
+[node name="Label" type="Label" parent="Mike2"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 13.0
+offset_right = 597.0
+offset_bottom = 82.0
+text = "coding by 
+   mike239x"
+label_settings = ExtResource("1_q8da1")
+
+[node name="Next" parent="." instance=ExtResource("4_1c5jt")]

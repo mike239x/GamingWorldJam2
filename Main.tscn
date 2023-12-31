@@ -1,46 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bscw8abwf51j7"]
+[gd_scene load_steps=4 format=3 uid="uid://d3vyfoc5e5ri4"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_4mpnj"]
-[ext_resource type="Shader" path="res://dreamy.gdshader" id="1_8bwco"]
-[ext_resource type="PackedScene" uid="uid://dxqnn6dlq0ij3" path="res://character/character.tscn" id="1_55dnx"]
-[ext_resource type="PackedScene" uid="uid://cbuqoux7udsup" path="res://hud/hud.tscn" id="1_x6wqk"]
-[ext_resource type="PackedScene" uid="uid://bpqu20ykmrprw" path="res://scene_transition.tscn" id="2_8gm5j"]
-[ext_resource type="PackedScene" uid="uid://cyie5iuro27qf" path="res://forest/dream_forest.tscn" id="3_xskd2"]
-[ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://forest/forest.tscn" id="5_ktbnl"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7pv3"]
-shader = ExtResource("1_8bwco")
-shader_parameter/gray = 0.5
-shader_parameter/brightness = 0.5
-shader_parameter/attract_color = null
-shader_parameter/attract_force = 0.5
-shader_parameter/noise_strength = 0.1
+[ext_resource type="PackedScene" uid="uid://bfb1dqrlne3b8" path="res://gameplay/gameplay.tscn" id="2_h6f8i"]
+[ext_resource type="PackedScene" uid="uid://bwqq1l55k8fgs" path="res://pop_ups/credits/credits.tscn" id="3_sgm3i"]
 
 [node name="Main" type="Node2D"]
-material = SubResource("ShaderMaterial_i7pv3")
 script = ExtResource("1_4mpnj")
-
-[node name="DreamForest" parent="." node_paths=PackedStringArray("mc") instance=ExtResource("3_xskd2")]
-visible = false
-mc = NodePath("../Character")
-metadata/_edit_lock_ = true
-
-[node name="Forest" parent="." instance=ExtResource("5_ktbnl")]
-
-[node name="Character" parent="." instance=ExtResource("1_55dnx")]
-position = Vector2(160, -379)
-max_speed = 200.0
-metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="Character"]
-
-[node name="HUD" parent="." node_paths=PackedStringArray("MC", "time_source") instance=ExtResource("1_x6wqk")]
-MC = NodePath("../Character")
-time_source = NodePath("../Forest")
-
-[node name="SceneTransition" parent="." instance=ExtResource("2_8gm5j")]
-
-[connection signal="cleared" from="DreamForest" to="." method="_on_dream_forest_cleared"]
-[connection signal="sleep" from="Forest" to="." method="_on_real_world_sleep"]
-[connection signal="death" from="Character" to="." method="_on_character_death"]
-[connection signal="shoot" from="Character" to="." method="_on_gun_shoot"]
+Gameplay = ExtResource("2_h6f8i")
+Credits = ExtResource("3_sgm3i")

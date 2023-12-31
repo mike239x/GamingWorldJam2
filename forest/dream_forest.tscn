@@ -64,6 +64,7 @@ texture = SubResource("NoiseTexture2D_apqa8")
 visible = false
 
 [node name="ElkSpawns" type="Node2D" parent="."]
+visible = false
 
 [node name="Marker2D" type="Marker2D" parent="ElkSpawns"]
 position = Vector2(-470, -292)
@@ -75,6 +76,7 @@ position = Vector2(547, 0)
 position = Vector2(257, -644)
 
 [node name="ShadeSpawns" type="Node2D" parent="."]
+visible = false
 
 [node name="Marker2D" type="Marker2D" parent="ShadeSpawns"]
 position = Vector2(-384, -479)

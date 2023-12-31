@@ -84,6 +84,5 @@ func _physics_process(delta):
 func _on_gun_shoot(Bullet, direction, location):
 	shoot.emit(Bullet, direction, location)
 
-
 func _on_hitbox_death():
 	death.emit(self)

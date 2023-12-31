@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwqq1l55k8fgs"]
+
+[ext_resource type="Script" path="res://pop_ups/credits/credits.gd" id="1_ky02v"]
+[ext_resource type="PackedScene" uid="uid://ba7jma0pdevf6" path="res://pop_ups/credits/credits_page1.tscn" id="2_ixm76"]
+[ext_resource type="PackedScene" uid="uid://drkrqy05wnu6v" path="res://pop_ups/credits/credits_page2.tscn" id="3_f2cfo"]
+
+[node name="Credits" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_ky02v")
+Page1 = ExtResource("2_ixm76")
+Page2 = ExtResource("3_f2cfo")

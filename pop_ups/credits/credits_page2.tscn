@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://drkrqy05wnu6v"]
+
+[ext_resource type="LabelSettings" uid="uid://bxqa5d08t78uw" path="res://pop_ups/label_settings.tres" id="1_o8wds"]
+[ext_resource type="Script" path="res://pop_ups/generic_popup.gd" id="1_rc0ia"]
+[ext_resource type="Texture2D" uid="uid://birg32gqhchu3" path="res://icon.svg" id="2_km3xe"]
+[ext_resource type="FontFile" uid="uid://dmw85i6hi0agy" path="res://slkscr.ttf" id="3_2gfhw"]
+[ext_resource type="PackedScene" uid="uid://cd5cxow3nbl6p" path="res://pop_ups/next.tscn" id="4_0v65d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1p5i4"]
+line_spacing = -16.0
+font = ExtResource("3_2gfhw")
+font_size = 64
+
+[node name="Page2" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_rc0ia")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = 46.0
+offset_right = 620.0
+offset_bottom = 118.0
+color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 19.0
+offset_right = 523.0
+offset_bottom = 52.0
+text = "Thank you for playing"
+label_settings = ExtResource("1_o8wds")
+
+[node name="Godot" type="ColorRect" parent="."]
+offset_left = -21.0
+offset_top = 148.0
+offset_right = 652.0
+offset_bottom = 245.0
+color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Godot"]
+position = Vector2(155.907, 48.0934)
+scale = Vector2(0.751459, 0.751459)
+texture = ExtResource("2_km3xe")
+
+[node name="Label" type="Label" parent="Godot"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 15.0
+offset_right = 597.0
+offset_bottom = 84.0
+text = "Game engine
+   Godot"
+label_settings = ExtResource("1_o8wds")
+
+[node name="Kottke" type="ColorRect" parent="."]
+offset_left = -29.0
+offset_top = 266.0
+offset_right = 658.0
+offset_bottom = 363.0
+color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="Icon" type="Label" parent="Kottke"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = -6.0
+offset_right = 257.0
+offset_bottom = 127.0
+text = "AB
+CD"
+label_settings = SubResource("LabelSettings_1p5i4")
+
+[node name="Label" type="Label" parent="Kottke"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 13.0
+offset_right = 597.0
+offset_bottom = 82.0
+text = "font: silkscreen
+  by Jason Kottke"
+label_settings = ExtResource("1_o8wds")
+
+[node name="Next" parent="." instance=ExtResource("4_0v65d")]

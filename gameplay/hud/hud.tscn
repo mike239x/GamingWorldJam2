@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbuqoux7udsup"]
+
+[ext_resource type="Script" path="res://gameplay/hud/hud.gd" id="1_epb4d"]
+[ext_resource type="FontFile" uid="uid://dmw85i6hi0agy" path="res://slkscr.ttf" id="2_qvfcj"]
+[ext_resource type="Texture2D" uid="uid://b1imrg7v4xrll" path="res://gameplay/hud/health_bar_under.png" id="2_x2657"]
+[ext_resource type="Texture2D" uid="uid://b8kq0k051hfav" path="res://gameplay/hud/health_bar.png" id="3_amw5o"]
+[ext_resource type="Texture2D" uid="uid://cot4ocko6g287" path="res://gameplay/hud/health_bar_health.png" id="4_cmy75"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mt12q"]
+font = ExtResource("2_qvfcj")
+font_color = Color(1, 1, 0.882353, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_epb4d")
+
+[node name="Health" type="TextureProgressBar" parent="."]
+offset_left = 202.0
+offset_top = 364.0
+offset_right = 402.0
+offset_bottom = 404.0
+texture_under = ExtResource("2_x2657")
+texture_over = ExtResource("3_amw5o")
+texture_progress = ExtResource("4_cmy75")
+
+[node name="Stamina" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(0.0117647, 0.72549, 0.54902, 1)
+offset_left = 1.0
+offset_top = 18.0
+offset_right = 80.0
+offset_bottom = 32.0
+value = 75.0
+show_percentage = false
+
+[node name="Time" type="Label" parent="."]
+offset_left = 551.0
+offset_top = 1.0
+offset_right = 599.0
+offset_bottom = 26.0
+text = "12:34"
+label_settings = SubResource("LabelSettings_mt12q")
