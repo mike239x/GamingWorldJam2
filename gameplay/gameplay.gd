@@ -45,6 +45,21 @@ func change_world(from, to):
 	activate(to)
 	activate($Character)
 
+func dialog_popup(text):
+	var cb = func():
+		var popup = Dialog.instantiate()
+		popup.text = text
+		display_pop_up(popup, basic_popup_cb)
+	return cb
+
+var settled = Once.new(dialog_popup(
+	"All set, I should\nstretch for a bit"
+))
+
+var getting_late = Once.new(dialog_popup(
+	"It's getting late,\ntime to go to sleep"
+))
+
 func _process(delta):
 	if state == WORLD_STATE.REAL:
 		var c = real_world.day_cycle
@@ -53,6 +68,8 @@ func _process(delta):
 		var s = 0.25
 		var h_prime = (1 - h / h_max) * (h_max - h) * s
 		c.speed_scale = h_prime
+		getting_late.check(h > 20.5)
+		settled.check(h > 14)
 	#if Input.is_action_just_released("tilda"):
 		#if  state == WORLD_STATE.DREAM:
 			#state = WORLD_STATE.REAL
@@ -76,25 +93,29 @@ func _on_new_spike(Spike, pos):
 
 func _on_real_world_sleep():
 	if state == WORLD_STATE.REAL:
+		dialog_popup(
+			"  Remember,\nget in, get out"
+		).call()
 		state = WORLD_STATE.DREAM
-		change_world(real_world, dream_world)
+		await change_world(real_world, dream_world)
 		dream_world.start()
+		dialog_popup(
+			"  As weird\nas it ever was"
+		).call()
 
 func _on_dream_forest_cleared():
-	display_pop_up(VictoryScreen.instantiate(), _victory_popup_cb)
-
-func _victory_popup_cb(_result):
-	get_tree().paused = false
-	done.emit()
-	queue_free()
+	display_pop_up(VictoryScreen.instantiate(), _finish)
 
 func _on_character_death(me):
-	display_pop_up(DeathScreen.instantiate(), _death_popup_cb)
+	display_pop_up(DeathScreen.instantiate(), _finish)
 
-func _death_popup_cb(_result):
+func _finish(_r):
 	get_tree().paused = false
 	done.emit()
 	queue_free()
+
+func basic_popup_cb(_r):
+	get_tree().paused = false
 
 func display_pop_up(scene, callback):
 	add_child(scene)

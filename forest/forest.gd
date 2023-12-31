@@ -25,4 +25,3 @@ func _on_sleeping_bag_sleep():
 
 func _process(delta):
 	pass
-
