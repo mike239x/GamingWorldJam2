@@ -7,9 +7,10 @@ extends CharacterBody2D
 var average_velocity = Vector2.ZERO
 
 signal new_tentacle(T, pos, dir)
+signal death(me)
 
 func _ready():
-	hitbox.start_with(10)
+	hitbox.start_with(100)
 	wall_min_slide_angle = PI / 2.1
 
 func _process(delta):
@@ -70,6 +71,7 @@ func _on_animation_finished(animation):
 				switch_attack_pattern()
 			attack()
 	if animation == 'death':
+		death.emit(self)
 		queue_free()
 
 func _on_detection_area_body_entered(body):

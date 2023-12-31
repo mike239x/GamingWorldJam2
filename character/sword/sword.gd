@@ -1,7 +1,7 @@
 extends Node2D
 
 var reload_duration = 0.8
-var damage = 3
+var damage = 5
 var lmb_held = false
 
 @export var active:bool = false

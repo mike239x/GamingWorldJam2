@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bscw8abwf51j7"]
+[gd_scene load_steps=9 format=3 uid="uid://bscw8abwf51j7"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_4mpnj"]
 [ext_resource type="Shader" path="res://dreamy.gdshader" id="1_8bwco"]
@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbuqoux7udsup" path="res://hud/hud.tscn" id="1_x6wqk"]
 [ext_resource type="PackedScene" uid="uid://bpqu20ykmrprw" path="res://scene_transition.tscn" id="2_8gm5j"]
 [ext_resource type="PackedScene" uid="uid://cyie5iuro27qf" path="res://forest/dream_forest.tscn" id="3_xskd2"]
-[ext_resource type="PackedScene" uid="uid://cywpo4wsu3jyl" path="res://enemies/elk/attacks/spike.tscn" id="4_1kkkc"]
 [ext_resource type="PackedScene" uid="uid://c0c4kylb8bb4p" path="res://forest/forest.tscn" id="5_ktbnl"]
-[ext_resource type="PackedScene" uid="uid://dwr5mfv0pw2jk" path="res://enemies/elk/elk.tscn" id="6_t7n0r"]
-[ext_resource type="PackedScene" uid="uid://bsqxxq2g2j8c2" path="res://enemies/shade/shade.tscn" id="8_xly1i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7pv3"]
 shader = ExtResource("1_8bwco")
@@ -23,17 +20,10 @@ shader_parameter/noise_strength = 0.1
 material = SubResource("ShaderMaterial_i7pv3")
 script = ExtResource("1_4mpnj")
 
-[node name="DreamForest" parent="." instance=ExtResource("3_xskd2")]
+[node name="DreamForest" parent="." node_paths=PackedStringArray("mc") instance=ExtResource("3_xskd2")]
+visible = false
+mc = NodePath("../Character")
 metadata/_edit_lock_ = true
-
-[node name="Spike" parent="DreamForest" instance=ExtResource("4_1kkkc")]
-position = Vector2(202, -356)
-
-[node name="Enemy" parent="DreamForest" instance=ExtResource("8_xly1i")]
-position = Vector2(529, -238)
-
-[node name="Elk" parent="DreamForest" instance=ExtResource("6_t7n0r")]
-position = Vector2(318, -260)
 
 [node name="Forest" parent="." instance=ExtResource("5_ktbnl")]
 
@@ -50,5 +40,7 @@ time_source = NodePath("../Forest")
 
 [node name="SceneTransition" parent="." instance=ExtResource("2_8gm5j")]
 
+[connection signal="cleared" from="DreamForest" to="." method="_on_dream_forest_cleared"]
 [connection signal="sleep" from="Forest" to="." method="_on_real_world_sleep"]
+[connection signal="death" from="Character" to="." method="_on_character_death"]
 [connection signal="shoot" from="Character" to="." method="_on_gun_shoot"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyie5iuro27qf"]
+[gd_scene load_steps=13 format=3 uid="uid://cyie5iuro27qf"]
 
 [ext_resource type="Script" path="res://forest/dream_forest.gd" id="1_5c8br"]
+[ext_resource type="PackedScene" uid="uid://dwr5mfv0pw2jk" path="res://enemies/elk/elk.tscn" id="2_h5t62"]
 [ext_resource type="Texture2D" uid="uid://bpbjwgaqs054y" path="res://forest/forest_map_base.png" id="2_rvtub"]
+[ext_resource type="PackedScene" uid="uid://bsqxxq2g2j8c2" path="res://enemies/shade/shade.tscn" id="3_phtjo"]
 [ext_resource type="Shader" path="res://forest/tree_tops.gdshader" id="3_twrit"]
 [ext_resource type="PackedScene" uid="uid://dqvnglmyy0a34" path="res://sleeping_bag/sleeping_bag.tscn" id="4_0qead"]
 [ext_resource type="Shader" path="res://dreamy.gdshader" id="5_yeymo"]
@@ -29,6 +31,8 @@ noise = SubResource("FastNoiseLite_ib1ik")
 
 [node name="DreamForest" type="Node2D"]
 script = ExtResource("1_5c8br")
+Elk = ExtResource("2_h5t62")
+Shade = ExtResource("3_phtjo")
 metadata/_edit_group_ = true
 
 [node name="BG" type="Sprite2D" parent="."]
@@ -57,5 +61,71 @@ scale = Vector2(1.502, 1)
 texture = SubResource("NoiseTexture2D_apqa8")
 
 [node name="Physics" parent="." instance=ExtResource("6_ic14l")]
+visible = false
+
+[node name="ElkSpawns" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ElkSpawns"]
+position = Vector2(-470, -292)
+
+[node name="Marker2D2" type="Marker2D" parent="ElkSpawns"]
+position = Vector2(547, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="ElkSpawns"]
+position = Vector2(257, -644)
+
+[node name="ShadeSpawns" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(-384, -479)
+
+[node name="Marker2D2" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(-162, -561)
+
+[node name="Marker2D3" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(166, -640)
+
+[node name="Marker2D4" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(322, -643)
+
+[node name="Marker2D5" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(714, -653)
+
+[node name="Marker2D6" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(818, -431)
+
+[node name="Marker2D7" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(756, -268)
+
+[node name="Marker2D8" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(664, -107)
+
+[node name="Marker2D9" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(191, -136)
+
+[node name="Marker2D10" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(-18, -178)
+
+[node name="Marker2D11" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(285, -126)
+
+[node name="Marker2D12" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(-346, -284)
+
+[node name="Marker2D13" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(507, -378)
+
+[node name="Marker2D14" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(-566, -385)
+
+[node name="Marker2D15" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(-129, -402)
+
+[node name="Marker2D16" type="Marker2D" parent="ShadeSpawns"]
+position = Vector2(552, -262)
+
+[node name="ShadeSpawner" type="Timer" parent="."]
+wait_time = 4.0
 
 [connection signal="sleep" from="Things/SleepingBag" to="." method="_on_sleeping_bag_sleep"]
+[connection signal="timeout" from="ShadeSpawner" to="." method="_on_shade_spawner_timeout"]

@@ -9,6 +9,8 @@ func _ready():
 	hitbox.start_with(10)
 	$AnimationPlayer.current_animation = 'walk'
 	wall_min_slide_angle = PI / 18
+	if randf() < FANCY_SKIN_PROB:
+		$Sprite2D.texture = fancy_skin
 
 # movement:
 #
@@ -29,6 +31,9 @@ var AGGRO_PROB = 0.7
 var MAX_ANGLE_CHANGE = PI / 4
 
 var target = null
+
+var fancy_skin = preload("res://enemies/shade/shade_placeholder_2.png")
+var FANCY_SKIN_PROB = 0.2
 
 func random_duration():
 	return randf_range(.5,1.5)

@@ -17,10 +17,8 @@ func get_time_label():
 	return '%02d:%02d' % [hours, minutes]
 
 func _ready():
-	#var time_speed = 1.0/30.0
-	var time_speed = 1.0
-	day_cycle.play('day_cycle', -1, time_speed)
-	time = 12 + 15 / 60
+	day_cycle.play('day_cycle')
+	time = 12.0 + 15.0 / 60.0
 
 func _on_sleeping_bag_sleep():
 	sleep.emit()
