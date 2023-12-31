@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://e73lohugudus"]
 
-[ext_resource type="Script" path="res://tentacle_attacks/stab.gd" id="1_6ylh6"]
-[ext_resource type="Texture2D" uid="uid://dvhlte1j5i2dm" path="res://tentacle_attacks/stab.png" id="1_dujbi"]
+[ext_resource type="Script" path="res://enemies/shade/tentacle_attacks/stab.gd" id="1_fp1yv"]
+[ext_resource type="Texture2D" uid="uid://dvhlte1j5i2dm" path="res://enemies/shade/tentacle_attacks/stab.png" id="2_qi66y"]
 
 [sub_resource type="Animation" id="Animation_p2x18"]
 resource_name = "RESET"
@@ -337,18 +337,18 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqnkp"]
-size = Vector2(42, 4)
+size = Vector2(59, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1yrm"]
 size = Vector2(22, 16)
 
 [node name="Tentacle" type="Node2D"]
-script = ExtResource("1_6ylh6")
+script = ExtResource("1_fp1yv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(57, -2)
 scale = Vector2(1.5, 1)
-texture = ExtResource("1_dujbi")
+texture = ExtResource("2_qi66y")
 hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -362,7 +362,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(82, 0)
+position = Vector2(-82, 1)
 shape = SubResource("RectangleShape2D_wqnkp")
 
 [node name="DamageArea" type="Area2D" parent="."]

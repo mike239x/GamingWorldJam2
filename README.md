@@ -5,6 +5,7 @@ Topic: DREAMS
 
 devs: mike239x (coding) and CalicoTCCG (art)
 
+Game title: Mr. Nightshade
 
 External assets:
 

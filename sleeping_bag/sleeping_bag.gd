@@ -2,6 +2,8 @@ extends Node2D
 
 signal sleep()
 
+@export var interactive: bool = true
+
 func _ready():
 	$Hint.visible = false
 
@@ -11,7 +13,9 @@ func _process(delta):
 			sleep.emit()
 
 func _on_area_2d_body_entered(body):
-	$Hint.visible = true
+	if interactive:
+		$Hint.visible = true
 
 func _on_area_2d_body_exited(body):
-	$Hint.visible = false
+	if interactive:
+		$Hint.visible = false

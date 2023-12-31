@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyie5iuro27qf"]
+
+[ext_resource type="Script" path="res://forest/dream_forest.gd" id="1_5c8br"]
+[ext_resource type="Texture2D" uid="uid://bpbjwgaqs054y" path="res://forest/forest_map_base.png" id="2_rvtub"]
+[ext_resource type="Shader" path="res://forest/tree_tops.gdshader" id="3_twrit"]
+[ext_resource type="PackedScene" uid="uid://dqvnglmyy0a34" path="res://sleeping_bag/sleeping_bag.tscn" id="4_0qead"]
+[ext_resource type="Shader" path="res://dreamy.gdshader" id="5_yeymo"]
+[ext_resource type="PackedScene" uid="uid://bdf2nbp0cedyh" path="res://forest/forest_physics.tscn" id="6_ic14l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wbdbi"]
+shader = ExtResource("3_twrit")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vr1uh"]
+shader = ExtResource("5_yeymo")
+shader_parameter/gray = 0.3
+shader_parameter/brightness = 0.8
+shader_parameter/attract_color = Color(0.415686, 0.00392157, 0.909804, 1)
+shader_parameter/attract_force = 0.3
+shader_parameter/noise_strength = 0.1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ib1ik"]
+frequency = 0.0196
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_apqa8"]
+width = 2300
+height = 2200
+noise = SubResource("FastNoiseLite_ib1ik")
+
+[node name="DreamForest" type="Node2D"]
+script = ExtResource("1_5c8br")
+metadata/_edit_group_ = true
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(146, -251)
+texture = ExtResource("2_rvtub")
+
+[node name="TreeTops" type="Sprite2D" parent="."]
+z_index = 4096
+material = SubResource("ShaderMaterial_wbdbi")
+position = Vector2(146, -251)
+texture = ExtResource("2_rvtub")
+
+[node name="Things" type="Node2D" parent="."]
+
+[node name="SleepingBag" parent="Things" instance=ExtResource("4_0qead")]
+position = Vector2(74, -354)
+interactive = false
+
+[node name="Chars" type="Node2D" parent="."]
+
+[node name="Shader" type="Sprite2D" parent="."]
+z_index = 1000
+material = SubResource("ShaderMaterial_vr1uh")
+position = Vector2(148, -246.5)
+scale = Vector2(1.502, 1)
+texture = SubResource("NoiseTexture2D_apqa8")
+
+[node name="Physics" parent="." instance=ExtResource("6_ic14l")]
+
+[connection signal="sleep" from="Things/SleepingBag" to="." method="_on_sleeping_bag_sleep"]

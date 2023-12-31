@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsqxxq2g2j8c2"]
+[gd_scene load_steps=15 format=3 uid="uid://bsqxxq2g2j8c2"]
 
 [ext_resource type="Script" path="res://enemies/shade/shade.gd" id="1_skdvo"]
 [ext_resource type="Texture2D" uid="uid://do3sfcrorqsh6" path="res://enemies/shade/shade_placeholder.png" id="2_j5ygx"]
-[ext_resource type="PackedScene" uid="uid://e73lohugudus" path="res://tentacle_attacks/stab.tscn" id="3_tm8br"]
-[ext_resource type="PackedScene" uid="uid://dcwjed8mdov1e" path="res://tentacle_attacks/swipe.tscn" id="4_6m3b3"]
+[ext_resource type="Texture2D" uid="uid://cajlahuexsaa7" path="res://shadow.png" id="2_qqwy7"]
+[ext_resource type="PackedScene" uid="uid://e73lohugudus" path="res://enemies/shade/tentacle_attacks/stab.tscn" id="3_nulj5"]
+[ext_resource type="PackedScene" uid="uid://dcwjed8mdov1e" path="res://enemies/shade/tentacle_attacks/swipe.tscn" id="4_b7jbm"]
 [ext_resource type="Script" path="res://Hitbox.gd" id="5_uqqyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8660g"]
@@ -138,14 +139,24 @@ _data = {
 radius = 9.0
 height = 26.0
 
-[node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_skdvo")
+[sub_resource type="CircleShape2D" id="CircleShape2D_31kdd"]
+radius = 250.0
 
-[node name="Blood" type="Node2D" parent="."]
+[sub_resource type="CircleShape2D" id="CircleShape2D_av1fh"]
+radius = 34.08
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_mask = 17
+script = ExtResource("1_skdvo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 32)
 shape = SubResource("CircleShape2D_8660g")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+self_modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(0, 2)
+texture = ExtResource("2_qqwy7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -157,11 +168,11 @@ z_index = 1
 position = Vector2(2, 3)
 texture = ExtResource("2_j5ygx")
 
-[node name="Tentacle" parent="Sprite2D" instance=ExtResource("3_tm8br")]
+[node name="Stabby" parent="Sprite2D" instance=ExtResource("3_nulj5")]
 z_index = -1
 position = Vector2(-1, -7)
 
-[node name="Tentacle2" parent="Sprite2D" instance=ExtResource("4_6m3b3")]
+[node name="Slashy" parent="Sprite2D" instance=ExtResource("4_b7jbm")]
 z_index = -1
 position = Vector2(-1, -7)
 rotation = 3.14159
@@ -177,4 +188,30 @@ position = Vector2(1, -4)
 shape = SubResource("CapsuleShape2D_s7o2t")
 debug_color = Color(1, 0, 0, 0.419608)
 
+[node name="Brain" type="Timer" parent="."]
+autostart = true
+
+[node name="DetectionZone" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+position = Vector2(1, 32)
+shape = SubResource("CircleShape2D_31kdd")
+
+[node name="CloseRangeDetectionZone" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CloseRangeDetectionZone"]
+position = Vector2(1, 32)
+shape = SubResource("CircleShape2D_av1fh")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="death" from="Sprite2D/Hitbox" to="." method="_on_hitbox_death"]
+[connection signal="timeout" from="Brain" to="." method="_on_brain_timeout"]
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]
+[connection signal="body_entered" from="CloseRangeDetectionZone" to="." method="_on_close_range_detection_zone_body_entered"]

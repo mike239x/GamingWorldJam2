@@ -1,9 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwr5mfv0pw2jk"]
+[gd_scene load_steps=14 format=3 uid="uid://dwr5mfv0pw2jk"]
 
 [ext_resource type="Script" path="res://enemies/elk/elk.gd" id="1_7lnus"]
 [ext_resource type="Texture2D" uid="uid://bejyvjvsh31hp" path="res://enemies/elk/tentaelk.png" id="1_qlhf3"]
 [ext_resource type="Script" path="res://Hitbox.gd" id="2_0gygx"]
+[ext_resource type="PackedScene" uid="uid://cmj7htvhe5lix" path="res://enemies/elk/attacks/underground_tentacle.tscn" id="2_aqbo1"]
 [ext_resource type="Texture2D" uid="uid://b2nwwrv2xo5bj" path="res://enemies/elk/elk_jump.png" id="4_l34bj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsjp4"]
+radius = 9.0
+height = 92.0
 
 [sub_resource type="Animation" id="Animation_lfquy"]
 length = 0.001
@@ -74,6 +79,18 @@ tracks/5/path = NodePath("Sprite2D:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:speed")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -159,8 +176,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_pwoi2"]
 resource_name = "idle"
-length = 0.01
-loop_mode = 1
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -237,7 +253,6 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_fua64"]
 resource_name = "jump"
-loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -311,6 +326,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.0, 0.0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:speed_factor")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35, 0.65, 0.75),
+"transitions": PackedFloat32Array(1, 1e-05, 1e+06, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 2.0, 0.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l0re6"]
 _data = {
@@ -320,12 +347,21 @@ _data = {
 "jump": SubResource("Animation_fua64")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsjp4"]
-radius = 9.0
-height = 92.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlqdj"]
+radius = 289.016
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vj42v"]
+radius = 101.597
 
 [node name="Elk" type="CharacterBody2D"]
+collision_mask = 17
 script = ExtResource("1_7lnus")
+Tentacle = ExtResource("2_aqbo1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(26, 71)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tsjp4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
@@ -346,7 +382,50 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(26, 71)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_tsjp4")
+[node name="AttackSpots" type="Node2D" parent="."]
+position = Vector2(-39, 70)
+
+[node name="Marker2D" type="Marker2D" parent="AttackSpots"]
+position = Vector2(-118, 0)
+rotation = 3.14159
+
+[node name="Marker2D2" type="Marker2D" parent="AttackSpots"]
+position = Vector2(121, 3)
+
+[node name="Marker2D3" type="Marker2D" parent="AttackSpots"]
+position = Vector2(57.5359, 107.655)
+rotation = 1.0472
+
+[node name="Marker2D4" type="Marker2D" parent="AttackSpots"]
+position = Vector2(-65.8301, 104.021)
+rotation = 2.35619
+
+[node name="Marker2D5" type="Marker2D" parent="AttackSpots"]
+position = Vector2(-62.366, -106.021)
+rotation = 4.18878
+
+[node name="Marker2D6" type="Marker2D" parent="AttackSpots"]
+position = Vector2(64.0981, -105.021)
+rotation = 5.23598
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(-40, 72)
+shape = SubResource("CircleShape2D_qlqdj")
+
+[node name="CloseRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CloseRange"]
+position = Vector2(-36, 74)
+shape = SubResource("CircleShape2D_vj42v")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="CloseRange" to="." method="_on_close_range_body_entered"]
+[connection signal="body_exited" from="CloseRange" to="." method="_on_close_range_body_exited"]

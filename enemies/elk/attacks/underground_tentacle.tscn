@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmj7htvhe5lix"]
+
+[ext_resource type="Script" path="res://enemies/elk/attacks/underground_tentacle.gd" id="1_o1t3o"]
+[ext_resource type="PackedScene" uid="uid://cywpo4wsu3jyl" path="res://enemies/elk/attacks/spike.tscn" id="2_01c5j"]
+[ext_resource type="Texture2D" uid="uid://cajlahuexsaa7" path="res://shadow.png" id="2_dicjw"]
+
+[node name="UndergroundTentacle" type="Node2D"]
+script = ExtResource("1_o1t3o")
+Spike = ExtResource("2_01c5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.501961)
+texture = ExtResource("2_dicjw")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

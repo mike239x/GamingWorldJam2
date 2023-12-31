@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0c4kylb8bb4p"]
+[gd_scene load_steps=13 format=3 uid="uid://c0c4kylb8bb4p"]
 
 [ext_resource type="Script" path="res://forest/forest.gd" id="1_3fd1r"]
 [ext_resource type="Texture2D" uid="uid://bpbjwgaqs054y" path="res://forest/forest_map_base.png" id="2_6p76g"]
 [ext_resource type="Shader" path="res://forest/tree_tops.gdshader" id="3_2813s"]
 [ext_resource type="PackedScene" uid="uid://dqvnglmyy0a34" path="res://sleeping_bag/sleeping_bag.tscn" id="3_d32hj"]
 [ext_resource type="Shader" path="res://day_night.gdshader" id="4_pl322"]
+[ext_resource type="PackedScene" uid="uid://bdf2nbp0cedyh" path="res://forest/forest_physics.tscn" id="6_552wc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wbdbi"]
 shader = ExtResource("3_2813s")
@@ -17,6 +18,57 @@ shader_parameter/attract_color = Color(0.678431, 0.301961, 1, 1)
 shader_parameter/attract_force = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_bdhq2"]
+
+[sub_resource type="Animation" id="Animation_yesap"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/gray")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/attract_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.678431, 0.301961, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/attract_force")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_wx4fo"]
 resource_name = "day_cycle"
@@ -71,57 +123,6 @@ tracks/3/keys = {
 "values": [0.2, 0.0, 0.4, 0.0, 0.0, 0.1, 0.4, 0.0, 0.2]
 }
 
-[sub_resource type="Animation" id="Animation_yesap"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/gray")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/brightness")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/attract_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.678431, 0.301961, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:material:shader_parameter/attract_force")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2yee"]
 _data = {
 "RESET": SubResource("Animation_yesap"),
@@ -136,6 +137,7 @@ position = Vector2(146, -251)
 texture = ExtResource("2_6p76g")
 
 [node name="TreeTops" type="Sprite2D" parent="."]
+visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_wbdbi")
 position = Vector2(146, -251)
@@ -161,19 +163,6 @@ libraries = {
 }
 autoplay = "day_cycle"
 
-[node name="Physics" type="Node2D" parent="."]
-visible = false
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Physics"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Physics/StaticBody2D"]
-polygon = PackedVector2Array(1234, -272, 980, -420, 961, -444, 965, -761, 908, -759, 847, -776, 838, -754, 862, -721, 804, -701, 715, -764, 662, -720, 602, -730, 591, -776, 509, -775, 529, -731, 507, -703, 475.502, -709.728, 442, -694, 424.113, -720.704, 404, -725, 363, -678, 344, -700, 297, -670, 209, -677, 149, -682, 113, -710, 82, -693, 5, -697, -80, -652, -137, -674, -139, -623, -183.043, -655.877, -238, -644, -276, -656, -286, -645, -278, -614, -338, -614, -354, -578, -402.244, -586.499, -434, -574, -399, -527, -431, -527, -442, -499, -483, -527, -547, -471, -578, -479, -680, -466, -792, -463, -837, -411, -778.402, -345.956, -652, -323, -531, -163, -476, -172, -210, -14, -165, -54, -86, -66, -7, -43, 74, 57, 166, 3, 264, -33, 349, -5, 457, 117, 402, 276, 417, 394, 565, 406, 632.168, 298.731, 640, 218, 684.134, 159.098, 692, 85, 866, -207, 852, -283, 839, -340, 861, -392, 920, -408, 967, -415, 982, -415, 1229, -268, 621, 844, -1408, -486, 922, -1174)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Physics"]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Physics/StaticBody2D2"]
-polygon = PackedVector2Array(-100, -724, -142, -724, -202, -760, -227.97, -774.341, -272, -729, -314, -726, -349, -747, -369, -747, -372, -709, -387, -691, -417, -691, -470, -712, -467, -644, -511, -598, -604, -580, -642, -614, -638, -564, -715, -525, -821, -533, -926, -524, -1121, -459, -1165, -410, -1127, -326, -787, -311, -657, -314, -521, -152, -204, 1, -83, -40, 90, 98, 265, -6, 420, 110, 374, 394, 346.259, 588.775, 425, 717, 436.7, 841.121, 634, 812, 669, 427, 694, 198, 873, -135, 1181, -254, 1652, -135, 1080, 502, 684, 1019, 448, 961, 158, 883, -1425, -271, -1314, -657, -470, -908, 87, -889, 224, -903, 477, -917, 637, -962, 819, -965, 992, -949, 1153, -929, 1394, -698, 1666, -145, 1179.54, -264.701, 1141, -251, 1196, -434, 1152, -515, 999, -438, 1000.76, -805.819, 916, -851, 848, -910, 811, -910, 809, -865, 751, -853, 684, -853, 638, -863, 640, -893, 548, -840, 454, -845, 454, -818, 417, -795, 351, -791, 309, -803, 227, -793, 165, -811, 110, -795, 69, -806, 21, -793, -38, -811, -45, -753)
+[node name="Physics" parent="." instance=ExtResource("6_552wc")]
 
 [connection signal="sleep" from="Things/SleepingBag" to="." method="_on_sleeping_bag_sleep"]

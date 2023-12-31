@@ -1,15 +1,11 @@
 extends Node2D
 
-#signal target_in_range(target)
-
 var damage = 1
 var locked_on = false
-var rotation_speed = 3
+var rotation_speed = 6
 
 func _process(delta):
-#	print( $AnimationPlayer.is_playing())
-	if not locked_on:
-		rotation += delta * rotation_speed
+	rotation += delta * rotation_speed
 
 func attack():
 	$AnimationPlayer.play('emerge')
@@ -30,4 +26,3 @@ func _on_detection_area_body_entered(body):
 	if not locked_on:
 		locked_on = true
 		attack()
-		#target_in_range.emit(body)

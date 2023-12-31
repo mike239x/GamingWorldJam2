@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvhlte1j5i2dm"
-path="res://.godot/imported/stab.png-a3524bd03f19e5ed3e1de86c60a170ce.ctex"
+uid="uid://41f3wn02pcky"
+path="res://.godot/imported/shot.png-297a03060d03abb5ac0feae71347b509.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tentacle_attacks/stab.png"
-dest_files=["res://.godot/imported/stab.png-a3524bd03f19e5ed3e1de86c60a170ce.ctex"]
+source_file="res://character/gun/shot.png"
+dest_files=["res://.godot/imported/shot.png-297a03060d03abb5ac0feae71347b509.ctex"]
 
 [params]
 

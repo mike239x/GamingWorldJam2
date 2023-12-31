@@ -22,6 +22,5 @@ func _on_body_entered(body):
 	queue_free()
 
 func _on_timer_timeout():
-	$Timer.stop()
 	bullet_timeout.emit(self)
 	queue_free()

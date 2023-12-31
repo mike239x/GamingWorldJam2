@@ -59,6 +59,14 @@ interact={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="ground_circles"
+2d_physics/layer_2="attacks_against_player"
+2d_physics/layer_3="attacks_against_enemies"
+2d_physics/layer_4="enemy_detection_logic"
+2d_physics/layer_5="enemy_pasture"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

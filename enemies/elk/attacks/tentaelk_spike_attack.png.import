@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chmarlrw4qp7u"
-path="res://.godot/imported/bullet.png-2c2153c0dd3b3eaf69d3b6d097e024ff.ctex"
+uid="uid://be28523gi5u7l"
+path="res://.godot/imported/tentaelk_spike_attack.png-3f2ba50660ce56972b4cb269854618d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bullet/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-2c2153c0dd3b3eaf69d3b6d097e024ff.ctex"]
+source_file="res://enemies/elk/attacks/tentaelk_spike_attack.png"
+dest_files=["res://.godot/imported/tentaelk_spike_attack.png-3f2ba50660ce56972b4cb269854618d4.ctex"]
 
 [params]
 

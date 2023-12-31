@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgmfqlncfrpxa"
-path="res://.godot/imported/swipe.png-f1caeac057508def25b3e74f58939cce.ctex"
+uid="uid://dvhlte1j5i2dm"
+path="res://.godot/imported/stab.png-a64cfdef96ba408b655371c56a082c9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tentacle_attacks/swipe.png"
-dest_files=["res://.godot/imported/swipe.png-f1caeac057508def25b3e74f58939cce.ctex"]
+source_file="res://enemies/shade/tentacle_attacks/stab.png"
+dest_files=["res://.godot/imported/stab.png-a64cfdef96ba408b655371c56a082c9c.ctex"]
 
 [params]
 
