@@ -9,7 +9,7 @@ var average_velocity = Vector2.ZERO
 signal new_tentacle(T, pos, dir)
 
 func _ready():
-	hitbox.start_with(100)
+	hitbox.start_with(10)
 	wall_min_slide_angle = PI / 2.1
 
 func _process(delta):
@@ -27,7 +27,7 @@ func _process(delta):
 var JUMP_PROB = 0.2
 var SWITCH_PROB = 0.3
 
-enum MIND_STATE {WANDER, ATTACK, FLEE}
+enum MIND_STATE {WANDER, ATTACK, FLEE, DEAD}
 var mind_state = MIND_STATE.WANDER
 
 func idle():
@@ -69,15 +69,25 @@ func _on_animation_finished(animation):
 			if randf() < SWITCH_PROB:
 				switch_attack_pattern()
 			attack()
+	if animation == 'death':
+		queue_free()
 
 func _on_detection_area_body_entered(body):
-	mind_state = MIND_STATE.ATTACK
+	if mind_state != MIND_STATE.DEAD:
+		mind_state = MIND_STATE.ATTACK
 
 func _on_detection_area_body_exited(body):
-	mind_state = MIND_STATE.WANDER
+	if mind_state != MIND_STATE.DEAD:
+		mind_state = MIND_STATE.WANDER
 
 func _on_close_range_body_entered(body):
-	mind_state = MIND_STATE.FLEE
+	if mind_state != MIND_STATE.DEAD:
+		mind_state = MIND_STATE.FLEE
 
 func _on_close_range_body_exited(body):
-	mind_state = MIND_STATE.ATTACK
+	if mind_state != MIND_STATE.DEAD:
+		mind_state = MIND_STATE.ATTACK
+
+func _on_hitbox_death():
+	mind_state = MIND_STATE.DEAD
+	$AnimationPlayer.queue('death')
