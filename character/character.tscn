@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dxqnn6dlq0ij3"]
+[gd_scene load_steps=33 format=3 uid="uid://dxqnn6dlq0ij3"]
 
 [ext_resource type="Script" path="res://character/character.gd" id="1_g5uxb"]
 [ext_resource type="PackedScene" uid="uid://dkgclwqjxiswo" path="res://character/gun/gun.tscn" id="2_ppbgk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Hitbox.gd" id="4_1hsij"]
 [ext_resource type="Texture2D" uid="uid://bqy0knmvqf5bh" path="res://character/mc_left.png" id="4_ayxx3"]
 [ext_resource type="Texture2D" uid="uid://bm0qjyfokrn2l" path="res://character/mc_right.png" id="5_hb7vu"]
+[ext_resource type="PackedScene" uid="uid://clja7lopsta0l" path="res://character/sword/sword.tscn" id="5_mvquj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_or6hb"]
 
@@ -28,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Pivot/Gun:z_index")
+tracks/1/path = NodePath("../Pivot/MainHand:z_index")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -40,7 +41,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pivot/Gun:position")
+tracks/2/path = NodePath("../Pivot/MainHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -93,7 +94,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Pivot/Gun:z_index")
+tracks/1/path = NodePath("../Pivot/MainHand:z_index")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -105,7 +106,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pivot/Gun:position")
+tracks/2/path = NodePath("../Pivot/MainHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -158,7 +159,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Pivot/Gun:z_index")
+tracks/1/path = NodePath("../Pivot/MainHand:z_index")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -170,7 +171,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pivot/Gun:position")
+tracks/2/path = NodePath("../Pivot/MainHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -222,7 +223,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Pivot/Gun:z_index")
+tracks/1/path = NodePath("../Pivot/MainHand:z_index")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -234,7 +235,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pivot/Gun:position")
+tracks/2/path = NodePath("../Pivot/MainHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -286,7 +287,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Pivot/Gun:z_index")
+tracks/1/path = NodePath("../Pivot/MainHand:z_index")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -298,7 +299,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pivot/Gun:position")
+tracks/2/path = NodePath("../Pivot/MainHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -375,7 +376,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Pivot/Gun:z_index")
+tracks/3/path = NodePath("../Pivot/MainHand:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -387,7 +388,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pivot/Gun:position")
+tracks/4/path = NodePath("../Pivot/MainHand:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -440,7 +441,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Pivot/Gun:position")
+tracks/3/path = NodePath("../Pivot/MainHand:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -452,7 +453,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pivot/Gun:z_index")
+tracks/4/path = NodePath("../Pivot/MainHand:z_index")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -505,7 +506,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Pivot/Gun:position")
+tracks/3/path = NodePath("../Pivot/MainHand:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -517,7 +518,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pivot/Gun:z_index")
+tracks/4/path = NodePath("../Pivot/MainHand:z_index")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -570,7 +571,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Pivot/Gun:position")
+tracks/3/path = NodePath("../Pivot/MainHand:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -582,7 +583,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pivot/Gun:z_index")
+tracks/4/path = NodePath("../Pivot/MainHand:z_index")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -669,9 +670,6 @@ script = ExtResource("1_g5uxb")
 [node name="Pivot" type="Node2D" parent="."]
 z_index = 1
 
-[node name="Gun" parent="Pivot" instance=ExtResource("2_ppbgk")]
-position = Vector2(-10, 6)
-
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 texture = ExtResource("2_tv2dl")
 
@@ -683,6 +681,17 @@ script = ExtResource("4_1hsij")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Sprite2D/Hitbox"]
 shape = SubResource("CircleShape2D_or6hb")
 debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="MainHand" type="Node2D" parent="Pivot"]
+position = Vector2(-10, 6)
+
+[node name="Gun" parent="Pivot/MainHand" instance=ExtResource("2_ppbgk")]
+visible = false
+
+[node name="Sword" parent="Pivot/MainHand" instance=ExtResource("5_mvquj")]
+rotation = 0.523598
+scale = Vector2(0.6, 0.6)
+active = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")
@@ -709,4 +718,4 @@ self_modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(-1, 0)
 texture = ExtResource("4_1f0gk")
 
-[connection signal="shoot" from="Pivot/Gun" to="." method="_on_gun_shoot"]
+[connection signal="shoot" from="Pivot/MainHand/Gun" to="." method="_on_gun_shoot"]

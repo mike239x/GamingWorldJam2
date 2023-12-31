@@ -22,7 +22,6 @@ var stamina:float = max_stamina
 var max_sanity:float = 100
 var sanity:float = max_stamina
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hitbox.start_with(100)

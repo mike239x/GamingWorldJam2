@@ -356,6 +356,7 @@ radius = 101.597
 [node name="Elk" type="CharacterBody2D"]
 collision_mask = 17
 script = ExtResource("1_7lnus")
+speed_factor = 2.0
 Tentacle = ExtResource("2_aqbo1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -409,6 +410,7 @@ position = Vector2(64.0981, -105.021)
 rotation = 5.23598
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -417,6 +419,7 @@ position = Vector2(-40, 72)
 shape = SubResource("CircleShape2D_qlqdj")
 
 [node name="CloseRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
