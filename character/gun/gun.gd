@@ -17,6 +17,7 @@ func fire():
 	if not active: return
 	shoot.emit(Bullet, $Muzzle.global_rotation, $Muzzle.global_position)
 	$AnimationPlayer.play('fire')
+	$Audio.play()
 	$Reload.start(reload_duration)
 
 func _input(event):

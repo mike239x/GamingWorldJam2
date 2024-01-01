@@ -15,3 +15,5 @@ External assets:
 
 Silkscreen font by Jason Kottke (jason@kottke.org)
 http://www.kottke.org/plus/type/silkscreen/index.html
+
+Free sound effects from https://www.fesliyanstudios.com

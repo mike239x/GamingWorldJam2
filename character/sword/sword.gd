@@ -13,6 +13,7 @@ func _process(delta):
 func fire():
 	if not active: return
 	$Slash/AnimationPlayer.play('attack')
+	$Audio.play()
 	$Reload.start(reload_duration)
 
 func _input(event):

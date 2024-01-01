@@ -1,9 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkgclwqjxiswo"]
+[gd_scene load_steps=10 format=3 uid="uid://dkgclwqjxiswo"]
 
 [ext_resource type="Script" path="res://character/gun/gun.gd" id="1_ewlpg"]
 [ext_resource type="Texture2D" uid="uid://bdd0btldkygnx" path="res://character/gun/gun.png" id="2_b8mcw"]
 [ext_resource type="PackedScene" uid="uid://cdxedvc70dy0a" path="res://character/gun/bullet/bullet.tscn" id="2_rhlnc"]
 [ext_resource type="Texture2D" uid="uid://41f3wn02pcky" path="res://character/gun/shot.png" id="3_3i8yk"]
+[ext_resource type="AudioStream" uid="uid://3ndqol56d83p" path="res://character/gun/fire.mp3" id="5_gx15v"]
+
+[sub_resource type="Animation" id="Animation_rsdsk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite Effect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite Effect:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_d5qep"]
 resource_name = "fire"
@@ -32,33 +60,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_rsdsk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite Effect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite Effect:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_o6brb"]
@@ -121,5 +122,9 @@ autoplay = "start"
 
 [node name="Reload" type="Timer" parent="."]
 one_shot = true
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_gx15v")
+volume_db = -25.0
 
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
