@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3vyfoc5e5ri4"]
+[gd_scene load_steps=5 format=3 uid="uid://d3vyfoc5e5ri4"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_4mpnj"]
 [ext_resource type="PackedScene" uid="uid://bfb1dqrlne3b8" path="res://gameplay/gameplay.tscn" id="2_h6f8i"]
 [ext_resource type="PackedScene" uid="uid://bwqq1l55k8fgs" path="res://pop_ups/credits/credits.tscn" id="3_sgm3i"]
+[ext_resource type="AudioStream" uid="uid://cwm0n3anrktnd" path="res://bg_music.wav" id="4_qka3j"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4mpnj")
 Gameplay = ExtResource("2_h6f8i")
 Credits = ExtResource("3_sgm3i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("4_qka3j")
+volume_db = -18.0
+autoplay = true
